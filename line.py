@@ -45,13 +45,12 @@ def draw_big_point(p):
     turtle.write('     '+str(p))
 
 
-def draw_point(px,py):
-    p = (px,py)
+def draw_point(p):
     turtle.goto(p)
     turtle.dot(5, random.random(), random.random(), random.random())
 
 
-def draw_line(p1, p2):
+def draw_line_maccoding(p1, p2):
     # fill here
     draw_big_point(p1)
     draw_big_point(p2)
@@ -64,11 +63,25 @@ def draw_line(p1, p2):
 
     for x in range(x1, x2, 10):
         y = a * x + b
-        draw_point(x,y)
+        p=(x,y)
+        draw_point(p)
 
-    draw_point(p2[0],p2[1]) #마지막 점을 찍어 준다
+    draw_point(p2) #마지막 점을 찍어 준다
     pass
 
+def draw_line(p1,p2):
+    draw_big_point(p1)
+    draw_big_point(p2)
+    x1, y1 = p1[0], p1[1]
+    x2, y2 = p2[0], p2[1]
+
+    for i in range(100,0, -1):
+        t = i/100
+        x = (1-t)*x1+t*x2
+        y = (1-t)*y1+t+y2
+        p = (x,y)
+        draw_point(p)
+    pass
 
 prepare_turtle_canvas()
 
@@ -76,6 +89,7 @@ prepare_turtle_canvas()
 # fill here
 p1 = (-100, -100) #tuple로 정의한 점1
 p2 = (300, 150) #점2
+draw_line_maccoding(p1,p2)
 draw_line(p1,p2)
 
 turtle.done()
