@@ -1,5 +1,6 @@
 import turtle
 import random
+import math
 
 
 def stop():
@@ -83,13 +84,23 @@ def draw_line(p1,p2):
         draw_point(p)
     pass
 
+def draw_shape():
+    a = 70
+    b = 40
+    for i in range(0, 1000):
+        t=i/180*math.pi*2
+        x = (a-b)*math.cos(t)+b*math.cos(t*((a-b)/b))
+        y = (a-b)*math.sin(t)-b*math.sin(t*((a-b)/b))
+        p=(x,y)
+        draw_point(p)
+    pass
 prepare_turtle_canvas()
 
 
 # fill here
 p1 = (-100, -100) #tuple로 정의한 점1
 p2 = (300, 150) #점2
-draw_line_maccoding(p1,p2)
-draw_line(p1,p2)
-
+#draw_line_maccoding(p1,p2)
+#draw_line(p1,p2)
+draw_shape()
 turtle.done()
